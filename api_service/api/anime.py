@@ -1,0 +1,13 @@
+import csv
+from api.config import config
+
+anime_file = open(config['dataset_path'] + '/merged_anime.csv')
+reader = csv.DictReader(anime_file)
+animes = {row['anime_id']: row for row in reader}
+
+
+def get_anime(id):
+    id = str(id)
+    if id not in animes:
+        return None
+    return animes[id]
